@@ -165,7 +165,7 @@ int main() {
 	glEnableVertexAttribArray(1);
 	// 纹理坐标属性
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
-    glEnableVertexAttribArray(2);
+	glEnableVertexAttribArray(2);
 	// #5 解绑
 	glBindVertexArray(0);
 
@@ -217,16 +217,16 @@ int main() {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 
 	// ~镜面贴图~
-    image = SOIL_load_image(FileSystem::getPath("resources/textures/container2_specular.png").c_str(), &width, &height, 0, SOIL_LOAD_RGB);
-    glBindTexture(GL_TEXTURE_2D, specularMap);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-    glGenerateMipmap(GL_TEXTURE_2D);
-    SOIL_free_image_data(image);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST_MIPMAP_NEAREST);
-    glBindTexture(GL_TEXTURE_2D, 0);
+	image = SOIL_load_image(FileSystem::getPath("resources/textures/container2_specular.png").c_str(), &width, &height, 0, SOIL_LOAD_RGB);
+	glBindTexture(GL_TEXTURE_2D, specularMap);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	SOIL_free_image_data(image);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+	glBindTexture(GL_TEXTURE_2D, 0);
     
 	// ~获取Uniform对象，向着色器传递贴图~
 	// 激活对象照明着色器，灯光为lampShader
@@ -258,17 +258,17 @@ int main() {
 
 		// 获取灯光、视角位置地址
 		GLint lightPosLoc    = glGetUniformLocation(lightingShader.Program, "light.position");
-        GLint viewPosLoc     = glGetUniformLocation(lightingShader.Program, "viewPos");
+        	GLint viewPosLoc     = glGetUniformLocation(lightingShader.Program, "viewPos");
 		// 设置获取灯光、视角位置
 		glUniform3f(lightPosLoc,    lightPos.x, lightPos.y, lightPos.z);
-        glUniform3f(viewPosLoc,     camera.Position.x, camera.Position.y, camera.Position.z);
+        	glUniform3f(viewPosLoc,     camera.Position.x, camera.Position.y, camera.Position.z);
         
 		// 设置光照属性
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "light.ambient"),  0.2f, 0.2f, 0.2f);
-        glUniform3f(glGetUniformLocation(lightingShader.Program, "light.diffuse"),  0.5f, 0.5f, 0.5f);
-        glUniform3f(glGetUniformLocation(lightingShader.Program, "light.specular"), 1.0f, 1.0f, 1.0f);
-        // 设置材质属性
-        glUniform1f(glGetUniformLocation(lightingShader.Program, "material.shininess"), 32.0f);
+        	glUniform3f(glGetUniformLocation(lightingShader.Program, "light.diffuse"),  0.5f, 0.5f, 0.5f);
+        	glUniform3f(glGetUniformLocation(lightingShader.Program, "light.specular"), 1.0f, 1.0f, 1.0f);
+        	// 设置材质属性
+        	glUniform1f(glGetUniformLocation(lightingShader.Program, "material.shininess"), 32.0f);
 
 
 		// 7.5创建摄影机/视角变换
@@ -298,10 +298,10 @@ int main() {
 
 		// 激活漫反射贴图
 		glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, diffuseMap);
+        	glBindTexture(GL_TEXTURE_2D, diffuseMap);
 		// 激活镜面贴图
-        glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, specularMap);
+        	glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, specularMap);
 
 		// 7.6绘制图形
 		// 绑VAO
