@@ -32,25 +32,25 @@ uniform Light light;       // 灯光属性
 
 void main()
 {
-    // 纹理采样
-    vec3 diffTex = vec3(texture(material.diffuse, TexCoords));
-    vec3 specTex = vec3(texture(material.specular, TexCoords));
-
-    // Ambient 环境色（很少有完全黑暗的场景）
-    vec3 ambient = light.ambient * diffTex;                     // 环境因子计算
-  	
-    // Diffuse 漫反射
-    vec3 norm = normalize(Normal);                              // 标准化法线
-    vec3 lightDir = normalize(light.position - FragPos);	// 计算灯光方向
-    float diff = max(dot(norm, lightDir), 0.0);			// 计算散射光强度  
-    vec3 diffuse = light.diffuse * diff * diffTex;              // 得到散射因子
-    
-    // Specular 高光
-    vec3 viewDir = normalize(viewPos - FragPos);                // 计算视线方向
-    vec3 reflectDir = reflect(-lightDir, norm);                 // 计算反射坐标
-    float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess); // 计算高光范围
-    vec3 specular = light.specular * spec * specTex;            // 高光因子
-        
-    vec3 result = ambient + diffuse + specular;                 // 最后计算最终的片段颜色输出
-    color = vec4(result, 1.0f);
+	// 纹理采样
+	vec3 diffTex = vec3(texture(material.diffuse, TexCoords));
+	vec3 specTex = vec3(texture(material.specular, TexCoords));
+	
+	// Ambient 环境色（很少有完全黑暗的场景）
+	vec3 ambient = light.ambient * diffTex;                     // 环境因子计算
+	  
+	// Diffuse 漫反射
+	vec3 norm = normalize(Normal);                              // 标准化法线
+	vec3 lightDir = normalize(light.position - FragPos);        // 计算灯光方向
+	float diff = max(dot(norm, lightDir), 0.0);                 // 计算散射光强度  
+	vec3 diffuse = light.diffuse * diff * diffTex;              // 得到散射因子
+	
+	// Specular 高光
+	vec3 viewDir = normalize(viewPos - FragPos);                // 计算视线方向
+	vec3 reflectDir = reflect(-lightDir, norm);                 // 计算反射坐标
+	float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess); // 计算高光范围
+	vec3 specular = light.specular * spec * specTex;            // 高光因子
+	
+	vec3 result = ambient + diffuse + specular;                 // 最后计算最终的片段颜色输出
+	color = vec4(result, 1.0f);
 } 
