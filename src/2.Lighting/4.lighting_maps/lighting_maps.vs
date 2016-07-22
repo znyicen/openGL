@@ -14,14 +14,14 @@ uniform mat4 projection; // 投影矩阵
 void main()
 {
 	// 顶点矩阵计算
-    gl_Position = projection * view *  model * vec4(position, 1.0f);
+	gl_Position = projection * view *  model * vec4(position, 1.0f);
 	// 片段位置计算
-    FragPos = vec3(model * vec4(position, 1.0f));
+	FragPos = vec3(model * vec4(position, 1.0f));
 	// 法线向量矩阵变换计算
 	// 将模型矩阵 正规矩阵化 ,然后乘以法线向量
 	// 使法线向量可以随物体一起进行矩阵变换
-    Normal = mat3(transpose(inverse(model))) * normal;  
-
+	Normal = mat3(transpose(inverse(model))) * normal;  
+	
 	// 传递纹理坐标
 	TexCoords = texCoords; 
 } 
