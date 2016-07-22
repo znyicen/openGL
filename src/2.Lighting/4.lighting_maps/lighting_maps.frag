@@ -4,9 +4,9 @@
 struct Material
 {
 	// ambient颜色大多数情况等于diffuse
-	sampler2D diffuse; // 用漫射纹理代替diffuse颜色
-	sampler2D specular;     // 镜面高光
-	float shininess;   // 高光强度
+	sampler2D diffuse;  // 用漫射纹理代替diffuse颜色
+	sampler2D specular; // 镜面高光
+	float shininess;    // 高光强度
 }; 
 
 // 灯光属性
@@ -37,12 +37,12 @@ void main()
     vec3 specTex = vec3(texture(material.specular, TexCoords));
 
     // Ambient 环境色（很少有完全黑暗的场景）
-    vec3 ambient = light.ambient * diffTex; // 环境因子计算
+    vec3 ambient = light.ambient * diffTex;                     // 环境因子计算
   	
     // Diffuse 漫反射
-    vec3 norm = normalize(Normal);								// 标准化法线
-    vec3 lightDir = normalize(light.position - FragPos);	    // 计算灯光方向
-    float diff = max(dot(norm, lightDir), 0.0);					// 计算散射光强度  
+    vec3 norm = normalize(Normal);                              // 标准化法线
+    vec3 lightDir = normalize(light.position - FragPos);	// 计算灯光方向
+    float diff = max(dot(norm, lightDir), 0.0);			// 计算散射光强度  
     vec3 diffuse = light.diffuse * diff * diffTex;              // 得到散射因子
     
     // Specular 高光
