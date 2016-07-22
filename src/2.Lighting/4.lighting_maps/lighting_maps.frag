@@ -32,9 +32,9 @@ uniform Light light;       // 灯光属性
 
 void main()
 {
-	// 纹理采样
-	vec3 diffTex = vec3(texture(material.diffuse, TexCoords));
-	vec3 specTex = vec3(texture(material.specular, TexCoords));
+    // 纹理采样
+    vec3 diffTex = vec3(texture(material.diffuse, TexCoords));
+    vec3 specTex = vec3(texture(material.specular, TexCoords));
 
     // Ambient 环境色（很少有完全黑暗的场景）
     vec3 ambient = light.ambient * diffTex; // 环境因子计算
