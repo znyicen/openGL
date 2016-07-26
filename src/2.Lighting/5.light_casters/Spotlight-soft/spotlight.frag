@@ -49,7 +49,7 @@ void main()
 	// Diffuse 漫反射
 	vec3 norm = normalize(Normal);                              // 标准化法线
 	vec3 lightDir = normalize(light.position - FragPos);        // 计算灯光方向
-	float diff = max(dot(norm, lightDir), 0.0);	                // 计算散射光强度  
+	float diff = max(dot(norm, lightDir), 0.0);	            // 计算散射光强度  
 	vec3 diffuse = light.diffuse * diff * diffTex;              // 得到散射因子
 
 	// Specular 高光
